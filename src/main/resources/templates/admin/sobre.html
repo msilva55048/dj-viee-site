@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+
+<html
+        lang="pt-BR"
+        xmlns:th="http://www.thymeleaf.org"
+>
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Editar Sobre | DJ VIEE</title>
+
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+
+        body {
+
+            min-height: 100vh;
+
+            background:
+                    radial-gradient(
+                            circle at 85% 10%,
+                            rgba(200, 255, 0, 0.07),
+                            transparent 30%
+                    ),
+                    radial-gradient(
+                            circle at 10% 90%,
+                            rgba(100, 0, 255, 0.18),
+                            transparent 38%
+                    ),
+                    #07070a;
+
+            color: #ffffff;
+
+            font-family:
+                    Arial,
+                    Helvetica,
+                    sans-serif;
+        }
+
+
+        .admin-header {
+
+            width: 100%;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: space-between;
+
+            gap: 20px;
+
+            padding:
+                    22px
+                    6%;
+
+            border-bottom:
+                    1px solid
+                    rgba(255, 255, 255, 0.08);
+
+            background:
+                    rgba(5, 5, 8, 0.94);
+        }
+
+
+        .admin-brand {
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 5px;
+        }
+
+
+        .admin-brand small {
+
+            color: #c8ff00;
+
+            font-size: 9px;
+
+            font-weight: 800;
+
+            letter-spacing: 2.5px;
+        }
+
+
+        .admin-brand strong {
+
+            color: #ffffff;
+
+            font-size: 20px;
+
+            letter-spacing: -0.5px;
+        }
+
+
+        .back-button {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            min-height: 44px;
+
+            padding:
+                    12px
+                    18px;
+
+            border:
+                    1px solid
+                    rgba(255, 255, 255, 0.17);
+
+            color: #ffffff;
+
+            text-decoration: none;
+
+            font-size: 9px;
+
+            font-weight: 900;
+
+            letter-spacing: 1.2px;
+
+            transition:
+                    background 0.2s ease,
+                    border-color 0.2s ease;
+        }
+
+
+        .back-button:hover {
+
+            background:
+                    rgba(255, 255, 255, 0.06);
+
+            border-color:
+                    rgba(255, 255, 255, 0.35);
+        }
+
+
+        .admin-main {
+
+            width: 100%;
+
+            max-width: 1000px;
+
+            margin: auto;
+
+            padding:
+                    65px
+                    6%
+                    90px;
+        }
+
+
+        .section-label {
+
+            display: block;
+
+            margin-bottom: 12px;
+
+            color: #c8ff00;
+
+            font-size: 9px;
+
+            font-weight: 900;
+
+            letter-spacing: 2.5px;
+        }
+
+
+        h1 {
+
+            font-size:
+                    clamp(
+                            44px,
+                            7vw,
+                            72px
+                    );
+
+            line-height: 0.92;
+
+            letter-spacing: -3px;
+        }
+
+
+        .page-description {
+
+            max-width: 620px;
+
+            margin-top: 20px;
+
+            color: #92929c;
+
+            font-size: 14px;
+
+            line-height: 1.7;
+        }
+
+
+        .success-message {
+
+            margin-top: 30px;
+
+            padding:
+                    16px
+                    18px;
+
+            border:
+                    1px solid
+                    rgba(200, 255, 0, 0.4);
+
+            background:
+                    rgba(200, 255, 0, 0.07);
+
+            color: #dfff70;
+
+            font-size: 12px;
+
+            line-height: 1.5;
+        }
+
+
+        .about-form {
+
+            margin-top: 42px;
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 22px;
+        }
+
+
+        .form-group {
+
+            padding: 22px;
+
+            border:
+                    1px solid
+                    rgba(255, 255, 255, 0.09);
+
+            background:
+                    rgba(255, 255, 255, 0.025);
+        }
+
+
+        .form-group label {
+
+            display: block;
+
+            margin-bottom: 11px;
+
+            color: #c8ff00;
+
+            font-size: 9px;
+
+            font-weight: 900;
+
+            letter-spacing: 1.8px;
+        }
+
+
+        textarea {
+
+            width: 100%;
+
+            min-height: 150px;
+
+            resize: vertical;
+
+            padding: 16px;
+
+            outline: none;
+
+            border:
+                    1px solid
+                    rgba(255, 255, 255, 0.12);
+
+            background: #0d0d12;
+
+            color: #ffffff;
+
+            font-family:
+                    Arial,
+                    Helvetica,
+                    sans-serif;
+
+            font-size: 14px;
+
+            line-height: 1.65;
+
+            transition:
+                    border-color 0.2s ease,
+                    background 0.2s ease;
+        }
+
+
+        textarea:focus {
+
+            border-color:
+                    rgba(200, 255, 0, 0.65);
+
+            background: #101015;
+        }
+
+
+        .form-footer {
+
+            display: flex;
+
+            align-items: center;
+            justify-content: flex-end;
+
+            gap: 15px;
+
+            padding-top: 7px;
+        }
+
+
+        .save-button {
+
+            min-width: 220px;
+
+            min-height: 54px;
+
+            padding:
+                    15px
+                    24px;
+
+            border: none;
+
+            background: #c8ff00;
+
+            color: #050507;
+
+            cursor: pointer;
+
+            font-size: 10px;
+
+            font-weight: 900;
+
+            letter-spacing: 1.2px;
+
+            transition:
+                    transform 0.2s ease,
+                    opacity 0.2s ease;
+        }
+
+
+        .save-button:hover {
+
+            transform:
+                    translateY(-2px);
+        }
+
+
+        .save-button:active {
+
+            transform:
+                    translateY(0);
+        }
+
+
+        .updated-at {
+
+            margin-top: 18px;
+
+            color: #64646e;
+
+            text-align: right;
+
+            font-size: 9px;
+
+            line-height: 1.5;
+
+            letter-spacing: 0.8px;
+        }
+
+
+        @media (max-width: 700px) {
+
+            .admin-header {
+
+                padding:
+                        17px
+                        5%;
+            }
+
+
+            .admin-brand strong {
+
+                font-size: 16px;
+            }
+
+
+            .back-button {
+
+                min-height: 40px;
+
+                padding:
+                        10px
+                        13px;
+
+                font-size: 8px;
+            }
+
+
+            .admin-main {
+
+                padding:
+                        50px
+                        5%
+                        70px;
+            }
+
+
+            h1 {
+
+                font-size:
+                        clamp(
+                                43px,
+                                14vw,
+                                58px
+                        );
+
+                letter-spacing: -2.5px;
+            }
+
+
+            .page-description {
+
+                font-size: 13.5px;
+            }
+
+
+            .about-form {
+
+                margin-top: 34px;
+
+                gap: 15px;
+            }
+
+
+            .form-group {
+
+                padding: 17px;
+            }
+
+
+            textarea {
+
+                min-height: 180px;
+
+                padding: 14px;
+
+                font-size: 14px;
+            }
+
+
+            .form-footer {
+
+                width: 100%;
+            }
+
+
+            .save-button {
+
+                width: 100%;
+
+                min-width: 0;
+            }
+
+
+            .updated-at {
+
+                text-align: center;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<header class="admin-header">
+
+
+    <div class="admin-brand">
+
+        <small>
+            DJ VIEE
+        </small>
+
+        <strong>
+            EDITAR SOBRE
+        </strong>
+
+    </div>
+
+
+    <a
+            th:href="@{/admin}"
+            class="back-button"
+    >
+        ← VOLTAR
+    </a>
+
+
+</header>
+
+
+<main class="admin-main">
+
+
+    <span class="section-label">
+        CONTEÚDO DO SITE
+    </span>
+
+
+    <h1>
+        SOBRE<br>
+        O ARTISTA
+    </h1>
+
+
+    <p class="page-description">
+
+        Os três textos abaixo aparecem na seção
+        Sobre do site do DJ VIEE.
+
+    </p>
+
+
+    <div
+            th:if="${successMessage}"
+            class="success-message"
+            th:text="${successMessage}"
+    >
+        Informações atualizadas com sucesso.
+    </div>
+
+
+    <form
+            th:action="@{/admin/sobre}"
+            method="post"
+            class="about-form"
+    >
+
+
+        <div class="form-group">
+
+            <label for="paragraph1">
+                PARÁGRAFO 01
+            </label>
+
+            <textarea
+                    id="paragraph1"
+                    name="paragraph1"
+                    required
+                    th:text="${about.paragraph1}"
+            ></textarea>
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label for="paragraph2">
+                PARÁGRAFO 02
+            </label>
+
+            <textarea
+                    id="paragraph2"
+                    name="paragraph2"
+                    required
+                    th:text="${about.paragraph2}"
+            ></textarea>
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label for="paragraph3">
+                PARÁGRAFO 03
+            </label>
+
+            <textarea
+                    id="paragraph3"
+                    name="paragraph3"
+                    required
+                    th:text="${about.paragraph3}"
+            ></textarea>
+
+        </div>
+
+
+        <div class="form-footer">
+
+            <button
+                    type="submit"
+                    class="save-button"
+            >
+                SALVAR ALTERAÇÕES
+            </button>
+
+        </div>
+
+
+    </form>
+
+
+    <p
+            class="updated-at"
+            th:if="${about.updatedAt != null}"
+    >
+        Última alteração:
+        <span
+                th:text="${#temporals.format(
+                    about.updatedAt,
+                    'dd/MM/yyyy HH:mm'
+                )}"
+        >
+            17/08/2026 13:00
+        </span>
+    </p>
+
+
+</main>
+
+
+</body>
+
+</html>

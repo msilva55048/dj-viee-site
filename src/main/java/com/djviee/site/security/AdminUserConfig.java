@@ -2,6 +2,7 @@ package com.djviee.site.security;
 
 import com.djviee.site.model.AdminUser;
 import com.djviee.site.repository.AdminUserRepository;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -16,12 +17,20 @@ import java.time.LocalDateTime;
 @Configuration
 public class AdminUserConfig {
 
+    // ========================================
+    // CRIPTOGRAFIA DA SENHA
+    // ========================================
+
     @Bean
     public PasswordEncoder passwordEncoder() {
 
         return new BCryptPasswordEncoder();
     }
 
+
+    // ========================================
+    // LOGIN PELO POSTGRESQL
+    // ========================================
 
     @Bean
     public UserDetailsService userDetailsService(
@@ -30,13 +39,14 @@ public class AdminUserConfig {
 
         return username -> {
 
-            AdminUser admin = adminUserRepository
-                    .findByUsername(username)
-                    .orElseThrow(
-                            () -> new UsernameNotFoundException(
-                                    "Administrador não encontrado."
-                            )
-                    );
+            AdminUser admin =
+                    adminUserRepository
+                            .findByUsername(username)
+                            .orElseThrow(
+                                    () -> new UsernameNotFoundException(
+                                            "Administrador não encontrado."
+                                    )
+                            );
 
             return User
                     .withUsername(admin.getUsername())
@@ -47,23 +57,63 @@ public class AdminUserConfig {
     }
 
 
+    // ========================================
+    // ADMIN INICIAL
+    //
+    // Só será criado em um banco vazio se
+    // ADMIN_INITIAL_USERNAME e
+    // ADMIN_INITIAL_PASSWORD existirem
+    // como variáveis de ambiente.
+    //
+    // Nenhuma senha fica escrita no código.
+    // ========================================
+
     @Bean
     public CommandLineRunner createInitialAdmin(
+
             AdminUserRepository adminUserRepository,
-            PasswordEncoder passwordEncoder
+
+            PasswordEncoder passwordEncoder,
+
+            @Value("${ADMIN_INITIAL_USERNAME:}")
+            String initialUsername,
+
+            @Value("${ADMIN_INITIAL_PASSWORD:}")
+            String initialPassword
     ) {
 
         return args -> {
 
-            if (!adminUserRepository.existsByUsername("admin")) {
+            if (
+                    initialUsername == null
+                            || initialUsername.isBlank()
+                            || initialPassword == null
+                            || initialPassword.isBlank()
+            ) {
 
-                AdminUser admin = new AdminUser();
+                return;
+            }
 
-                admin.setUsername("admin");
+
+            String username =
+                    initialUsername.trim();
+
+
+            if (
+                    !adminUserRepository
+                            .existsByUsername(username)
+            ) {
+
+                AdminUser admin =
+                        new AdminUser();
+
+                admin.setUsername(
+                        username
+                );
 
                 admin.setPassword(
                         passwordEncoder.encode(
-                                "TrocarDepois123!"
+                                initialPassword
                         )
                 );
 
@@ -75,7 +125,11 @@ public class AdminUserConfig {
                         LocalDateTime.now()
                 );
 
-                adminUserRepository.save(admin);
+
+                adminUserRepository.save(
+                        admin
+                );
+
 
                 System.out.println(
                         "Administrador inicial criado no banco."

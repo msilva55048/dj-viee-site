@@ -1,0 +1,451 @@
+
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+
+        body {
+
+            min-height: 100vh;
+
+            background:
+                    radial-gradient(
+                            circle at 85% 10%,
+                            rgba(200, 255, 0, 0.07),
+                            transparent 30%
+                    ),
+                    radial-gradient(
+                            circle at 10% 90%,
+                            rgba(100, 0, 255, 0.18),
+                            transparent 38%
+                    ),
+                    #07070a;
+
+            color: #ffffff;
+
+            font-family:
+                    Arial,
+                    Helvetica,
+                    sans-serif;
+        }
+
+
+        .admin-header {
+
+            width: 100%;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: space-between;
+
+            gap: 20px;
+
+            padding:
+                    22px
+                    6%;
+
+            border-bottom:
+                    1px solid
+                    rgba(255, 255, 255, 0.08);
+
+            background:
+                    rgba(5, 5, 8, 0.94);
+        }
+
+
+        .admin-brand {
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 5px;
+        }
+
+
+        .admin-brand small {
+
+            color: #c8ff00;
+
+            font-size: 9px;
+
+            font-weight: 800;
+
+            letter-spacing: 2.5px;
+        }
+
+
+        .admin-brand strong {
+
+            font-size: 20px;
+
+            letter-spacing: -0.5px;
+        }
+
+
+        .back-button {
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            min-height: 44px;
+
+            padding:
+                    12px
+                    18px;
+
+            border:
+                    1px solid
+                    rgba(255, 255, 255, 0.17);
+
+            color: #ffffff;
+
+            text-decoration: none;
+
+            font-size: 9px;
+
+            font-weight: 900;
+
+            letter-spacing: 1.2px;
+        }
+
+
+        .admin-main {
+
+            width: 100%;
+
+            max-width: 850px;
+
+            margin: auto;
+
+            padding:
+                    65px
+                    6%
+                    90px;
+        }
+
+
+        .section-label {
+
+            display: block;
+
+            margin-bottom: 12px;
+
+            color: #c8ff00;
+
+            font-size: 9px;
+
+            font-weight: 900;
+
+            letter-spacing: 2.5px;
+        }
+
+
+        h1 {
+
+            font-size:
+                    clamp(
+                            44px,
+                            7vw,
+                            72px
+                    );
+
+            line-height: 0.92;
+
+            letter-spacing: -3px;
+        }
+
+
+        .page-description {
+
+            max-width: 620px;
+
+            margin-top: 20px;
+
+            color: #92929c;
+
+            font-size: 14px;
+
+            line-height: 1.7;
+        }
+
+
+        .account-info {
+
+            margin-top: 35px;
+
+            padding: 20px;
+
+            border:
+                    1px solid
+                    rgba(255, 255, 255, 0.09);
+
+            background:
+                    rgba(255, 255, 255, 0.025);
+        }
+
+
+        .account-info span {
+
+            display: block;
+
+            margin-bottom: 7px;
+
+            color: #777780;
+
+            font-size: 8px;
+
+            font-weight: 900;
+
+            letter-spacing: 1.6px;
+        }
+
+
+        .account-info strong {
+
+            color: #ffffff;
+
+            font-size: 17px;
+        }
+
+
+        .message {
+
+            margin-top: 25px;
+
+            padding:
+                    15px
+                    18px;
+
+            font-size: 12px;
+
+            line-height: 1.5;
+        }
+
+
+        .success-message {
+
+            border:
+                    1px solid
+                    rgba(200, 255, 0, 0.4);
+
+            background:
+                    rgba(200, 255, 0, 0.07);
+
+            color: #dfff70;
+        }
+
+
+        .error-message {
+
+            border:
+                    1px solid
+                    rgba(255, 80, 80, 0.45);
+
+            background:
+                    rgba(255, 60, 60, 0.07);
+
+            color: #ff9c9c;
+        }
+
+
+        .password-form {
+
+            margin-top: 30px;
+
+            padding: 24px;
+
+            border:
+                    1px solid
+                    rgba(255, 255, 255, 0.09);
+
+            background:
+                    rgba(255, 255, 255, 0.025);
+        }
+
+
+        .password-form h2 {
+
+            margin-bottom: 25px;
+
+            font-size: 22px;
+        }
+
+
+        .form-group {
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 8px;
+
+            margin-bottom: 18px;
+        }
+
+
+        label {
+
+            color: #c8ff00;
+
+            font-size: 9px;
+
+            font-weight: 900;
+
+            letter-spacing: 1.7px;
+        }
+
+
+        input {
+
+            width: 100%;
+
+            min-height: 52px;
+
+            padding:
+                    13px
+                    14px;
+
+            outline: none;
+
+            border:
+                    1px solid
+                    rgba(255, 255, 255, 0.12);
+
+            background: #0d0d12;
+
+            color: #ffffff;
+
+            font-size: 14px;
+        }
+
+
+        input:focus {
+
+            border-color:
+                    rgba(200, 255, 0, 0.65);
+        }
+
+
+        .password-help {
+
+            margin-top: -8px;
+
+            margin-bottom: 20px;
+
+            color: #6f6f79;
+
+            font-size: 10px;
+
+            line-height: 1.5;
+        }
+
+
+        .save-button {
+
+            width: 100%;
+
+            min-height: 54px;
+
+            margin-top: 5px;
+
+            padding:
+                    15px
+                    22px;
+
+            border: none;
+
+            background: #c8ff00;
+
+            color: #050507;
+
+            cursor: pointer;
+
+            font-size: 10px;
+
+            font-weight: 900;
+
+            letter-spacing: 1.2px;
+        }
+
+
+        .security-note {
+
+            margin-top: 22px;
+
+            padding-left: 14px;
+
+            border-left:
+                    2px solid
+                    rgba(200, 255, 0, 0.35);
+
+            color: #777780;
+
+            font-size: 10px;
+
+            line-height: 1.6;
+        }
+
+
+        @media (max-width: 700px) {
+
+            .admin-header {
+
+                padding:
+                        17px
+                        5%;
+            }
+
+
+            .admin-brand strong {
+
+                font-size: 16px;
+            }
+
+
+            .back-button {
+
+                min-height: 40px;
+
+                padding:
+                        10px
+                        13px;
+
+                font-size: 8px;
+            }
+
+
+            .admin-main {
+
+                padding:
+                        50px
+                        5%
+                        70px;
+            }
+
+
+            h1 {
+
+                font-size:
+                        clamp(
+                                43px,
+                                14vw,
+                                58px
+                        );
+
+                letter-spacing: -2.5px;
+            }
+
+
+            .password-form {
+
+                padding: 18px;
+            }
+
+        }

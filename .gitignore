@@ -1,4 +1,10 @@
 HELP.md
+node_modules/
+.next/
+.vercel/
+*.tsbuildinfo
+test-results/
+migration-private/
 target/
 .mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/

@@ -1,0 +1,385 @@
+
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            min-height: 100vh;
+
+            background:
+                    radial-gradient(
+                            circle at 80% 10%,
+                            rgba(200, 255, 0, 0.08),
+                            transparent 30%
+                    ),
+                    radial-gradient(
+                            circle at 10% 90%,
+                            rgba(100, 0, 255, 0.22),
+                            transparent 35%
+                    ),
+                    #07070a;
+
+            color: #ffffff;
+
+            font-family:
+                    Arial,
+                    Helvetica,
+                    sans-serif;
+        }
+
+        .admin-header {
+            width: 100%;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: space-between;
+
+            gap: 20px;
+
+            padding:
+                    24px
+                    6%;
+
+            border-bottom:
+                    1px solid
+                    rgba(255, 255, 255, 0.08);
+
+            background:
+                    rgba(5, 5, 8, 0.92);
+        }
+
+        .admin-brand {
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 5px;
+        }
+
+        .admin-brand small {
+            color: #c8ff00;
+
+            font-size: 9px;
+            font-weight: 800;
+
+            letter-spacing: 2.5px;
+        }
+
+        .admin-brand strong {
+            font-size: 22px;
+
+            letter-spacing: -0.5px;
+        }
+
+        .logout-form {
+            margin: 0;
+        }
+
+        .logout-button {
+            min-height: 44px;
+
+            padding:
+                    12px
+                    20px;
+
+            color: #ffffff;
+
+            background:
+                    transparent;
+
+            border:
+                    1px solid
+                    rgba(255, 255, 255, 0.18);
+
+            cursor: pointer;
+
+            font-size: 10px;
+            font-weight: 900;
+
+            letter-spacing: 1.2px;
+
+            transition:
+                    background 0.25s ease,
+                    border-color 0.25s ease;
+        }
+
+        .logout-button:hover {
+            background:
+                    rgba(255, 255, 255, 0.07);
+
+            border-color:
+                    rgba(255, 255, 255, 0.4);
+        }
+
+        .admin-main {
+            width: 100%;
+
+            max-width: 1180px;
+
+            margin: auto;
+
+            padding:
+                    70px
+                    6%
+                    90px;
+        }
+
+        .admin-label {
+            display: block;
+
+            margin-bottom: 12px;
+
+            color: #c8ff00;
+
+            font-size: 10px;
+            font-weight: 800;
+
+            letter-spacing: 2.6px;
+        }
+
+        h1 {
+            max-width: 750px;
+
+            font-size:
+                    clamp(
+                            42px,
+                            7vw,
+                            78px
+                    );
+
+            line-height: 0.92;
+
+            letter-spacing: -3px;
+        }
+
+        .admin-description {
+            max-width: 620px;
+
+            margin-top: 23px;
+
+            color: #9999a4;
+
+            font-size: 15px;
+
+            line-height: 1.7;
+        }
+
+        .admin-grid {
+            margin-top: 55px;
+
+            display: grid;
+
+            grid-template-columns:
+                    repeat(
+                            2,
+                            1fr
+                    );
+
+            gap: 18px;
+        }
+
+        .admin-card {
+            position: relative;
+
+            min-height: 180px;
+
+            display: flex;
+
+            flex-direction: column;
+
+            justify-content: space-between;
+
+            padding: 27px;
+
+            overflow: hidden;
+
+            color: #ffffff;
+
+            border:
+                    1px solid
+                    rgba(255, 255, 255, 0.1);
+
+            background:
+                    linear-gradient(
+                            145deg,
+                            rgba(255, 255, 255, 0.055),
+                            rgba(255, 255, 255, 0.015)
+                    );
+
+            transition:
+                    transform 0.25s ease,
+                    border-color 0.25s ease,
+                    background 0.25s ease;
+        }
+
+        .admin-card::before {
+            content: "";
+
+            position: absolute;
+
+            left: 0;
+            top: 0;
+
+            width: 3px;
+            height: 100%;
+
+            background: #c8ff00;
+        }
+
+        .admin-card:hover {
+            transform:
+                    translateY(-4px);
+
+            border-color:
+                    rgba(200, 255, 0, 0.4);
+
+            background:
+                    linear-gradient(
+                            145deg,
+                            rgba(200, 255, 0, 0.06),
+                            rgba(255, 255, 255, 0.02)
+                    );
+        }
+
+        .admin-card-number {
+            color: #666670;
+
+            font-size: 11px;
+            font-weight: 900;
+
+            letter-spacing: 1.5px;
+        }
+
+        .admin-card-content span {
+            display: block;
+
+            margin-bottom: 8px;
+
+            color: #c8ff00;
+
+            font-size: 9px;
+            font-weight: 800;
+
+            letter-spacing: 2px;
+        }
+
+        .admin-card-content h2 {
+            margin-bottom: 9px;
+
+            font-size: 27px;
+
+            letter-spacing: -0.7px;
+        }
+
+        .admin-card-content p {
+            max-width: 390px;
+
+            color: #8f8f99;
+
+            font-size: 13px;
+
+            line-height: 1.55;
+        }
+
+        .admin-arrow {
+            position: absolute;
+
+            top: 26px;
+            right: 26px;
+
+            color: #c8ff00;
+
+            font-size: 22px;
+        }
+
+        .admin-footer {
+            padding:
+                    30px
+                    6%;
+
+            text-align: center;
+
+            color: #5f5f68;
+
+            border-top:
+                    1px solid
+                    rgba(255, 255, 255, 0.06);
+
+            font-size: 9px;
+
+            letter-spacing: 1.4px;
+        }
+
+
+        @media (max-width: 700px) {
+
+            .admin-header {
+                padding:
+                        18px
+                        5%;
+            }
+
+            .admin-brand strong {
+                font-size: 18px;
+            }
+
+            .logout-button {
+                min-height: 42px;
+
+                padding:
+                        11px
+                        15px;
+
+                font-size: 9px;
+            }
+
+            .admin-main {
+                padding:
+                        52px
+                        5%
+                        70px;
+            }
+
+            h1 {
+                font-size:
+                        clamp(
+                                42px,
+                                14vw,
+                                60px
+                        );
+
+                line-height: 0.9;
+
+                letter-spacing: -2.5px;
+            }
+
+            .admin-description {
+                margin-top: 20px;
+
+                font-size: 14px;
+            }
+
+            .admin-grid {
+                margin-top: 38px;
+
+                grid-template-columns:
+                        1fr;
+
+                gap: 14px;
+            }
+
+            .admin-card {
+                min-height: 165px;
+
+                padding: 23px;
+            }
+
+            .admin-card-content h2 {
+                font-size: 24px;
+            }
+
+        }

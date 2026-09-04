@@ -1,0 +1,49 @@
+{
+  "name": "dj-viee",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "typecheck": "tsc --noEmit",
+    "test": "tsx --test tests/*.test.ts",
+    "test:visual": "tsx scripts/visual-check.ts",
+    "test:integration": "tsx scripts/integration-check.ts",
+    "db:setup": "node --env-file-if-exists=.env.local scripts/setup-supabase.mjs apply",
+    "db:apply-fix": "node --env-file-if-exists=.env.local scripts/apply-supabase-fix.mjs",
+    "db:target-inspect": "node --env-file-if-exists=.env.local scripts/setup-supabase.mjs inspect",
+    "db:access-check": "node --env-file-if-exists=.env.local scripts/check-supabase-access.mjs",
+    "test:real": "node --env-file-if-exists=.env.local scripts/validate-real-app.mjs",
+    "db:verify": "node --env-file-if-exists=.env.local scripts/migrate-data.mjs verify",
+    "db:inspect": "node --env-file-if-exists=.env.local scripts/migrate-data.mjs inspect",
+    "db:migrate": "node --env-file-if-exists=.env.local scripts/migrate-data.mjs migrate"
+  },
+  "engines": {
+    "node": ">=22.0.0"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.115.0",
+    "bcryptjs": "^3.0.3",
+    "cookie": "^2.0.1",
+    "next": "^16.3.4",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8"
+  },
+  "devDependencies": {
+    "@electric-sql/pglite": "^0.5.8",
+    "@playwright/test": "^1.62.1",
+    "@types/node": "^26.4.1",
+    "@types/pg": "^8.23.1",
+    "@types/pngjs": "^6.0.5",
+    "@types/react": "^19.2.18",
+    "@types/react-dom": "^19.2.7",
+    "parse5": "^8.0.1",
+    "pg": "^8.23.0",
+    "pixelmatch": "^7.2.0",
+    "pngjs": "^7.0.0",
+    "prettier": "^3.9.6",
+    "tsx": "^4.23.13",
+    "typescript": "^7.0.2"
+  }
+}

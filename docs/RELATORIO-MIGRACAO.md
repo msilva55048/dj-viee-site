@@ -106,3 +106,11 @@ A suíte também cobre PostgreSQL/RLS, BCrypt, sessões, CSRF, URLs do YouTube, 
 - Deploy: **NÃO**.
 
 O próximo estágio deve ser tratado separadamente: revisão, commit, push, configuração da Vercel e teste de produção. Nenhum serviço antigo deve ser desligado antes dessa homologação.
+
+## Fase 3 — publicação na Vercel
+
+Em 04/09/2026, o projeto `mirian-silva-agendamentos/dj-viee-site` foi conectado ao repositório GitHub e publicado em Production. As cinco variáveis foram cadastradas como valores ocultos; seus conteúdos não foram registrados neste relatório. Enquanto o DNS definitivo não aponta para a Vercel, `SITE_URL` permanece temporariamente como `https://dj-viee-site.vercel.app` para que a validação CSRF aceite os formulários administrativos nessa origem.
+
+O deploy foi testado com os dados reais: página pública, seis músicas em destaque, agenda, headers de segurança, bloqueio anônimo, login, criação e exclusão de música e criação, edição e exclusão de evento. Os registros temporários foram removidos e o conteúdo real foi restaurado.
+
+O domínio `djviee.com.br` foi associado ao projeto, mas sua configuração consta como pendente porque o DNS continua no provedor atual. Nenhum registro do Registro.br foi alterado. Após a futura mudança e validação do DNS, `SITE_URL` deverá ser alterada para `https://djviee.com.br` e um novo deploy deverá ser realizado. Render e o banco PostgreSQL antigo continuam intactos.

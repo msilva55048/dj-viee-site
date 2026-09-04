@@ -7,7 +7,8 @@ import pg from "pg";
 const databaseUrl = process.env.SUPABASE_DATABASE_URL;
 if (!databaseUrl) throw Error("SUPABASE_DATABASE_URL ausente.");
 const port = 3217;
-const origin = `http://localhost:${port}`;
+const remoteOrigin = process.env.REAL_APP_URL?.replace(/\/$/, "");
+const origin = remoteOrigin || `http://localhost:${port}`;
 const marker = `CODEX_MIGRATION_TEST_${Date.now()}_${randomBytes(4).toString("hex")}`;
 const password = randomBytes(24).toString("base64url");
 const db = new pg.Client({ connectionString: databaseUrl });
@@ -76,11 +77,12 @@ try {
     [marker, await bcrypt.hash(password, 10)],
   );
   testAdminId = createdAdmin.rows[0].id;
-  server = spawn(process.execPath, ["node_modules/next/dist/bin/next", "start", "-p", String(port)], {
-    cwd: process.cwd(),
-    env: { ...process.env, SITE_URL: origin },
-    stdio: "ignore",
-  });
+  if (!remoteOrigin)
+    server = spawn(process.execPath, ["node_modules/next/dist/bin/next", "start", "-p", String(port)], {
+      cwd: process.cwd(),
+      env: { ...process.env, SITE_URL: origin },
+      stdio: "ignore",
+    });
   await waitForApp();
 
   assert.equal((await request("/admin")).status, 307);
